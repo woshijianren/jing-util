@@ -1,4 +1,4 @@
-package com.exception.util;
+package com.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

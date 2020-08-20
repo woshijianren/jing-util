@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.exception.util;
+package com.util;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.util.IdUtil;

@@ -23,7 +23,7 @@ public @interface XSSF {
     /**
      * index对应的是改字段在excel表格中列的位置，从0开始
      * 但其实只要你没有重复的，并且大小无错，对该属性的处理会排序好的
-     * 推荐5递增，更大也可以，防止后期需求改变
+     * 推荐10递增，更大也可以，防止后期需求改变或者自己将header设置错误，增加容错率
      */
     int index();
 
@@ -33,16 +33,8 @@ public @interface XSSF {
     String header();
 
     /**
-     * 是否金额类型，txt的导出需要取消三位分节法
+     * 单位枚举，转换用，看具体情况，用枚举或者字符串
      */
-    boolean isMoney() default false;
 
-    /*
-        是否是数字，是的话，用0占位
-     */
-    boolean isNumber() default false;
 
-    boolean isRatio() default false;
-
-    boolean isCNY() default false;
 }

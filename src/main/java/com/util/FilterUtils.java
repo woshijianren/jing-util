@@ -1,4 +1,4 @@
-package com.exception.util;
+package com.util;
 
 import cn.hutool.core.date.DateUtil;
 import lombok.extern.slf4j.Slf4j;

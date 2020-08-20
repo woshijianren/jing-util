@@ -1,4 +1,4 @@
-package com.exception.util;
+package com.util;
 
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUtil;
@@ -29,20 +29,20 @@ public class TimeUtil {
         long startMills, endMills;
         String startValueName = startMonth;
         // 开始时间为""，就设置为历史最早时间
-        if (startMonth == null || startMonth.equals("")) {
+        if (StrUtil.isBlank(startMonth)) {
             startMonth = DateUtil.format(DateUtil.parse(Constant.HISTORY_MONTH, format), format);
             startValueName = "历史";
         }
         // 获取开始月份的1号0点的毫秒数 毫秒数：原始数据里面是13位的时间戳
         startMills = DateUtil.parse(startMonth, format).getTime();
         // 结束时间为空，设置为本月
-        if (endMonth == null || endMonth.equals("")) {
+        if (StrUtil.isBlank(endMonth)) {
             endMonth = DateUtil.format(DateUtil.date(), format);
         }
         // 结束时间的毫秒数为结束月份的最后一天的23：59：59；毫秒数：原始数据里面是13位的时间戳
         endMills = DateUtil.parse(DateUtil.format(DateUtil.offsetMonth(DateUtil.parse(endMonth, format), 1), format), new SimpleDateFormat(format)).getTime() - Constant.MILLS;
 
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(8);
         map.put("startMonth", startValueName);
         map.put("endMonth", endMonth);
         map.put("startMills", startMills + "");
@@ -62,19 +62,19 @@ public class TimeUtil {
         long startMills, endMills;
         // 开始时间为""，就设置为上一个月
         String startValueName = startDay;
-        if (startDay == null || startDay.equals("")) {
+        if (StrUtil.isBlank(startDay)) {
             startDay = DateUtil.format(DateUtil.parse(Constant.HISTORY_DAY, format), format);
             startValueName = "历史";
         }
         // 获取开始月份的1号0点的毫秒数 毫秒数：原始数据里面是13位的时间戳
         startMills = DateUtil.parse(startDay, format).getTime();
         // 结束时间为空，设置为本月
-        if (endDay == null || endDay.equals("")) {
+        if (StrUtil.isBlank(startDay)) {
             endDay = DateUtil.format(DateUtil.date(), format);
         }
         // 结束时间的毫秒数为本年本月本日的23：59：59；毫秒数：原始数据里面是13位的时间戳
         endMills = DateUtil.parse(DateUtil.format(DateUtil.offsetDay(DateUtil.parse(endDay, format), 1), format), new SimpleDateFormat(format)).getTime() - Constant.MILLS;
-        Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>(8);
         map.put("startDay", startValueName);
         map.put("endDay", endDay);
         map.put("startMills", startMills + "");
@@ -233,7 +233,7 @@ public class TimeUtil {
     public static String getLastDayOfLastQuarter(String year, String quarter) {
         quarter = String.valueOf((Integer.parseInt(quarter) - 1));
         // 因为1-1=0，就是去年了，而判断里面写着else = 4，所以0是4，year要-1
-        if (quarter.equals("0")) {
+        if ("0".equals(quarter)) {
             year = String.valueOf(Integer.parseInt(year) - 1);
         }
         return getLastDayOfThisQuarter(year, quarter);
@@ -363,9 +363,6 @@ public class TimeUtil {
     public static Boolean betweenDate(String date, Long millsTime) {
         long beginTime = Long.parseLong(getStartMillsOfDay(date));
         long endTime = Long.parseLong(getEndMillsOfDay(date));
-        if (millsTime >= beginTime && millsTime <= endTime) {
-            return true;
-        }
-        return false;
+        return millsTime >= beginTime && millsTime <= endTime;
     }
 }

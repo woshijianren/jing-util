@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package com.exception.util;
+package com.util;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;

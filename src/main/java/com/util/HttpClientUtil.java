@@ -1,4 +1,4 @@
-package com.exception.util;
+package com.util;
 
 import com.exception.BadRequestException;
 import lombok.extern.slf4j.Slf4j;

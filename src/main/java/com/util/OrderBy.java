@@ -1,4 +1,4 @@
-package com.exception.util;
+package com.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,6 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderBy {
 
-    private String fieldName; //排序字段名
-    private Boolean asc; //是否升序
+    /**
+     * 排序字段名
+     */
+    private String fieldName;
+    /**
+     * 是否升序
+     */
+    private Boolean asc;
 }
