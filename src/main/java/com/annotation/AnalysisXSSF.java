@@ -61,7 +61,7 @@ public class AnalysisXSSF {
     static List<Method> getPartGetMethods(Class<?> clazz, List<Field> fieldList) throws NoSuchMethodException {
         List<Method> methodList = new ArrayList<>();
         for (Field field : fieldList) {
-            methodList.add(clazz.getDeclaredMethod(splicePrefixMethod("get", field, clazz)));
+            methodList.add(clazz.getDeclaredMethod(splicePrefixMethod("get", field)));
         }
         return methodList;
     }
@@ -73,7 +73,7 @@ public class AnalysisXSSF {
         List<Field> fieldList = getAllFieldWithXSSF(clazz);
         List<Method> methodList = new ArrayList<>();
         for (Field field : fieldList) {
-            methodList.add(clazz.getDeclaredMethod(splicePrefixMethod("set", field, clazz), String.class));
+            methodList.add(clazz.getDeclaredMethod(splicePrefixMethod("set", field), String.class));
         }
         return methodList;
     }
@@ -83,10 +83,9 @@ public class AnalysisXSSF {
      *
      * @param prefix 前缀，一般只有：get和set这两个
      * @param field  字段名
-     * @param clazz  类
      * @return setXxx或者getXxx
      */
-    private static String splicePrefixMethod(String prefix, Field field, Class<?> clazz) {
+    private static String splicePrefixMethod(String prefix, Field field) {
         String fieldName = field.getName();
         prefix += fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
         return prefix;

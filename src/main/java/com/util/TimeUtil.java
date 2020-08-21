@@ -89,7 +89,7 @@ public class TimeUtil {
      * @return yyyy-MM-dd
      */
     public static String getDay(String date) {
-        if ("".equals(date) || date == null) {
+        if (StrUtil.isBlank(date)) {
             return DateUtil.today();
         }
         return date;
@@ -102,7 +102,7 @@ public class TimeUtil {
      * @return yyyy
      */
     public static String getYear(String year) {
-        if ("".equals(year) || year == null) {
+        if (StrUtil.isBlank(year)) {
             return DateUtil.thisYear() + "";
         }
         return year;
